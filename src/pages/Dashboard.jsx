@@ -22,7 +22,7 @@ import {
 
 // eslint-disable-next-line no-unused-vars
 const StatCard = ({ title, value, icon: Icon, change, color, loading, subtitle, trend = 'up' }) => (
-    <Card className="h-full hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group">
+    <Card className="h-full hover:shadow-lg hover:-translate-y-1 group">
         <CardContent className="p-4 sm:p-6">
             <div className="flex items-start justify-between">
                 <div className="flex-1 min-w-0">
@@ -49,7 +49,7 @@ const StatCard = ({ title, value, icon: Icon, change, color, loading, subtitle, 
                         </>
                     )}
                 </div>
-                <div className={`ml-4 p-3 rounded-xl ${color} bg-opacity-10 group-hover:scale-110 transition-transform duration-300 shrink-0`}>
+                <div className={`ml-4 p-3 rounded-xl ${color} bg-opacity-10 group-hover:scale-110 transition-transform shrink-0`}>
                     <Icon className={`w-6 h-6 ${color}`} />
                 </div>
             </div>
