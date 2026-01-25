@@ -6,6 +6,7 @@ import {
     Settings,
     LogOut,
     X,
+    User as UserIcon,
 } from 'lucide-react'
 import { useAuth } from '../../hooks/useAuth'
 import clsx from 'clsx'
@@ -21,15 +22,15 @@ const Sidebar = ({ onClose }) => {
     const { logout, user } = useAuth()
 
     return (
-        <aside className="flex flex-col h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700">
-            {/* En-tête de la sidebar avec bouton fermer sur mobile */}
+        <aside className="flex flex-col h-full bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-xl">
+            {/* En-tête de la sidebar */}
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
                 <div className="flex items-center">
-                    <h1 className="text-xl font-bold text-primary-600">DashFlow</h1>
+                    <h1 className="text-xl font-bold text-primary-600 dark:text-primary-400">DashFlow</h1>
                 </div>
                 <button
                     onClick={onClose}
-                    className="md:hidden p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700"
+                    className="md:hidden p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
                     aria-label="Fermer le menu"
                 >
                     <X className="w-5 h-5" />
@@ -46,8 +47,8 @@ const Sidebar = ({ onClose }) => {
                             end={item.to === '/'}
                             className={({ isActive }) =>
                                 clsx(
-                                    'flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-colors',
-                                    'hover:bg-gray-100 dark:hover:bg-gray-700',
+                                    'flex items-center px-3 py-3 text-sm font-medium rounded-lg transition-all duration-200',
+                                    'hover:bg-gray-100 dark:hover:bg-gray-700 hover:pl-4',
                                     isActive
                                         ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400'
                                         : 'text-gray-700 dark:text-gray-300'
@@ -73,15 +74,15 @@ const Sidebar = ({ onClose }) => {
                         />
                     ) : (
                         <div className="w-8 h-8 rounded-full bg-primary-100 dark:bg-primary-900 flex items-center justify-center mr-3">
-                            <User className="w-4 h-4 text-primary-600 dark:text-primary-400" />
+                            <UserIcon className="w-4 h-4 text-primary-600 dark:text-primary-400" />
                         </div>
                     )}
                     <div className="flex-1 min-w-0">
                         <p className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
-                            {user?.name}
+                            {user?.name || 'Utilisateur'}
                         </p>
                         <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                            {user?.email}
+                            {user?.email || 'admin@example.com'}
                         </p>
                     </div>
                 </div>
@@ -97,4 +98,4 @@ const Sidebar = ({ onClose }) => {
     )
 }
 
-export default Sidebar;
+export default Sidebar

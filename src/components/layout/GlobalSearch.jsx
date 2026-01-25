@@ -49,24 +49,25 @@ const GlobalSearch = () => {
 
   return (
     <>
-      {/* Bouton de déclenchement */}
+      {/* Bouton de déclenchement (version desktop) */}
       <button
         onClick={() => setIsOpen(true)}
-        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-colors"
+        className="flex items-center gap-2 px-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-lg transition-all duration-200"
       >
         <Search className="w-4 h-4" />
-        <span className="text-gray-600 dark:text-gray-400">Rechercher...</span>
-        <kbd className="ml-4 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900">
+        <span className="text-gray-600 dark:text-gray-400 hidden lg:inline">Rechercher...</span>
+        <kbd className="hidden lg:inline ml-4 px-2 py-1 text-xs border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-900">
           {navigator.platform.includes('Mac') ? '⌘K' : 'Ctrl+K'}
         </kbd>
       </button>
 
-      {/* Modal de recherche */}
+      {/* Modal de recherche avec backdrop blur */}
       <Modal 
         isOpen={isOpen} 
         onClose={() => setIsOpen(false)}
         size="lg"
         hideCloseButton
+        className="p-4 sm:p-6 backdrop-blur-sm"
       >
         <div className="p-2">
           <form onSubmit={handleSearch} className="mb-6">
@@ -78,7 +79,7 @@ const GlobalSearch = () => {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Rechercher des utilisateurs, produits, paramètres..."
-                className="w-full pl-12 pr-4 py-3 text-lg border-0 focus:ring-0 focus:outline-none bg-transparent"
+                className="w-full pl-12 pr-4 py-3 text-lg border-0 focus:ring-0 focus:outline-none bg-transparent text-gray-900 dark:text-gray-100 placeholder-gray-400"
                 autoComplete="off"
               />
             </div>
@@ -94,7 +95,7 @@ const GlobalSearch = () => {
                   item.action()
                   setIsOpen(false)
                 }}
-                className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left"
+                className="w-full flex items-center justify-between p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all duration-200 text-left"
               >
                 <span className="text-gray-700 dark:text-gray-300">{item.label}</span>
                 <Command className="w-4 h-4 text-gray-400" />
@@ -107,4 +108,4 @@ const GlobalSearch = () => {
   )
 }
 
-export default GlobalSearch;
+export default GlobalSearch
