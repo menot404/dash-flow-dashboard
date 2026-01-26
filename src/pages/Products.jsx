@@ -16,6 +16,7 @@ import { useConfirmation } from '../hooks/useConfirmation';
 import { useNotification } from '../hooks/useNotification';
 import Button from '../components/ui/Button'
 import Pagination from '../components/ui/Pagination'
+import ActionMenu from '../components/ui/ActionMenu'
 import SearchInput from '../components/ui/SearchInput'
 import LoadingSpinner from '../components/common/LoadingSpinner'
 import ErrorMessage from '../components/common/ErrorMessage'
@@ -100,6 +101,24 @@ const Products = () => {
             console.error('Error loading categories:', error)
         }
     }
+    const handleViewDetails = (product) => {
+  setViewingProduct(product)
+  setDetailModalOpen(true)
+}
+
+const handleCopyDetails = () => {
+  if (viewingProduct) {
+    const details = `
+Produit: ${viewingProduct.title}
+Prix: ${formatCurrency(viewingProduct.price)}
+Catégorie: ${viewingProduct.category}
+Description: ${viewingProduct.description}
+    `.trim()
+    
+    navigator.clipboard.writeText(details)
+    showSuccess('Détails copiés dans le presse-papier')
+  }
+}
 
     const handleViewDetails = (product) => {
         setViewingProduct(product)

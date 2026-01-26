@@ -90,6 +90,27 @@ Statut: ${viewingUser.status === 'active' ? 'Actif' : 'Inactif'}
         }
     }, [viewingUser, showSuccess])
 
+    //Fonction pour voir les détails de l'utilisateur 
+
+    const handleViewUserDetails = (user) => {
+  setViewingUser(user)
+  setUserDetailModalOpen(true)
+}
+
+const handleCopyUserDetails = () => {
+  if (viewingUser) {
+    const details = `
+Utilisateur: ${viewingUser.name}
+Email: ${viewingUser.email}
+Téléphone: ${viewingUser.phone}
+Entreprise: ${viewingUser.company?.name}
+    `.trim()
+    
+    navigator.clipboard.writeText(details)
+    showSuccess('Détails copiés dans le presse-papier')
+  }
+}
+
     const filteredUsers = useMemo(() => {
         if (!usersApi.data) return []
 
