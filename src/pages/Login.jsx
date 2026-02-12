@@ -280,7 +280,7 @@ const Login = () => {
                         © {new Date().getFullYear()} DashFlow. Tous droits réservés.
                     </p>
                     <p className="text-xs text-gray-400 dark:text-gray-600 mt-1">
-                        Version 1.0.0
+                        Version 1.1.0
                     </p>
                 </div>
 
